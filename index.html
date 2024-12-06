@@ -1,42 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-  <title>Wish U</title>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Porcentajes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(to right, #6a11cb, #2575fc); /* Degradado de fondo */
+            color: white; /* Color de texto */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        input, button {
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+        input {
+            width: calc(100% - 22px); /* Ajustar ancho del input */
+        }
+        button {
+            background-color: #ff4081; /* Color de botón */
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff1f5b; /* Color al pasar el mouse */
+        }
+        .mensaje {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
 </head>
-
 <body>
-  <div class="container">
-    <div id="one" class="one">
-      <h1>HOLA
-        <span id="name" class="name animate__delay-1s">JOSELYN</span>
-      </h1>
-      <p class="two animate__delay-2s" id="greetingText">¡¡¡Es tu cumpleaños!!! :D</p>
-    </div>
-    <div class="three animate__delay-5s">
-        Queria hacer algo especial, asi que hice esto para ti :)
-    </div>
-    <div class="wish" id="balloon-container">
-      <img src="assets/300.gif" class="wish-hbd animate__delay-5s center" alt="happy birthday">
-      <br><br>
-      <h5 class="wishText animate__delay-5s"><span id="wishText">No hace falta un dia especial para recordarte lo especial e importante que eres. Las estrellas brillan donde quieras que vayas.</span><br><span id="gradient-text">Feliz <span
-            id="seconds"></span><sup></sup> Cumpleaños</span> :)</h5>
-    </div>
-    <div class="buttons">
-        <span class="heart animate__delay-5s"><span>HECHO CON </span><img
-            class="heart-icon animate__delay-2s" src="assets/images1.png"
-            style="width: 18px;height: 15px;" alt="3" title="Hey D, :)"> POR <span id="heartText">IVAN</span></span>
-      </a>
-      <a type="button" class="refresh-btn animate__delay-5s" onClick="refreshPage()"><img
-          src="assets/refresh.png" style="width: 23px;height: 23px;" alt="Refresh" title="Refresh"></a>
-    </div>
-  </div>
-</body>
-<script type="application/javascript" src="main.js"></script>
+    <h1>Calculadora de Porcentajes</h1>
+    <label for="horas">Horas trabajadas por día (n):</label>
+    <input type="number" id="horas" required><br>
 
+    <label for="prendasPorHora">Prendas que pide por hora (a):</label>
+    <input type="number" id="prendasPorHora" required><br>
+
+    <label for="prendasProducidas">Prendas producidas al día (b):</label>
+    <input type="number" id="prendasProducidas" required><br>
+
+    <button onclick="calcular()">Calcular</button>
+
+    <h2>Resultados:</h2>
+    <p id="resultadoC"></p>
+    <p id="resultadoD"></p>
+    <p id="mensaje"></p>
+
+    <script>
+        function calcular() {
+            const n = parseFloat(document.getElementById('horas').value);
+            const a = parseFloat(document.getElementById('prendasPorHora').value);
+            const b = parseFloat(document.getElementById('prendasProducidas').value);
+
+            const c = n * a; // Multiplicar n × a
+            const d = b / c; // Dividir b ÷ c
+
+            document.getElementById('resultadoC').innerText = `Prendas requeridas (c): ${c}`;
+            document.getElementById('resultadoD').innerText = `Porcentaje de producción (d): ${(d * 100).toFixed(2)}%`;
+
+            const mensaje = document.getElementById('mensaje');
+            if (d < 0.5) {
+                mensaje.innerText = "¡Ánimo! 🌟 Puedes hacerlo, sigue esforzándote.";
+            } else if (d >= 0.5 && d < 1) {
+                mensaje.innerText = "¡Buen trabajo! 👍 Pero aún hay margen para mejorar.";
+            } else {
+                mensaje.innerText = "¡Felicidades! 🎉 Has superado las expectativas con un gran esfuerzo.";
+            }
+        }
+    </script>
+</body>
 </html>
